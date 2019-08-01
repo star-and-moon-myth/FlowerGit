@@ -10,6 +10,104 @@ public class InputBean {
 	private Float intputPrice;
 	private Date inputDate;
 	private Integer flag;
+	
+	public Object[] getAll(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(inputId != null){
+			o[c++] = inputId;
+		}
+		if(flowerId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(inputNum != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(intputPrice != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(inputDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		return o;
+	}
+	
+	public Object[] getAllbeforeId(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(flowerId != null){
+			o[c++] = flowerId;
+		}
+		if(inputNum != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(intputPrice != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(inputDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		if(inputId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = inputId;
+		}
+		return o;
+	}
 
 	public Integer getInputId() {
 		return inputId;

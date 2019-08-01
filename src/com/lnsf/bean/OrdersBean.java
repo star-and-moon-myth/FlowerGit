@@ -1,9 +1,7 @@
 package com.lnsf.bean;
 
 import java.util.Date;
-
 import java.util.Date;
-
 import java.util.Date;
 
 public class OrdersBean {
@@ -16,6 +14,136 @@ public class OrdersBean {
 	private Float orderPrice;
 	private Integer state;
 	private Integer flag;
+	
+	public Object[] getAll(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(orderId != null){
+			o[c++] = orderId;
+		}
+		if(orderDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = orderDate;
+		}
+		if(deliverDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = deliverDate;
+		}
+		if(finishDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = finishDate;
+		}
+		if(conId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = conId;
+		}
+		if(orderPrice != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = orderPrice;
+		}
+		if(state != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = state;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		return o;
+	}
+	
+	public Object[] getAllbeforeId(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(orderDate != null){
+			o[c++] = orderDate;
+		}
+		if(deliverDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = deliverDate;
+		}
+		if(finishDate != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = finishDate;
+		}
+		if(conId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = conId;
+		}
+		if(orderPrice != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = orderPrice;
+		}
+		if(state != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = state;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		if(orderId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = orderId;
+		}
+		return o;
+	}
 
 	public String getOrderId() {
 		return orderId;

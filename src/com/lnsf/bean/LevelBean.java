@@ -7,6 +7,88 @@ public class LevelBean {
 	private Integer lowPoint;
 	private Integer highPoint;
 	private Integer flag;
+	
+	public Object[] getAll(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(levelId != null){
+			o[c++] = levelId;
+		}
+		if(levelName != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = levelName;
+		}
+		if(lowPoint != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = lowPoint;
+		}
+		if(highPoint != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = highPoint;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		return o;
+	}
+	
+	public Object[] getAllbeforeId(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(levelName != null){
+			o[c++] = levelName;
+		}
+		if(lowPoint != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = lowPoint;
+		}
+		if(highPoint != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = highPoint;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		if(levelId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = levelId;
+		}
+		return o;
+	}
 
 	public Integer getLevelId() {
 		return levelId;

@@ -7,6 +7,88 @@ public class UserBean {
 	private String password;
 	private Integer role;
 	private Integer flag;
+	
+	public Object[] getAll(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(userId != null){
+			o[c++] = userId;
+		}
+		if(userName != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = userName;
+		}
+		if(password != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = password;
+		}
+		if(role != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = role;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		return o;
+	}
+	
+	public Object[] getAllbeforeId(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(userName != null){
+			o[c++] = userName;
+		}
+		if(password != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = password;
+		}
+		if(role != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = role;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		if(userId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = userId;
+		}
+		return o;
+	}
 
 	public String getUserId() {
 		return userId;

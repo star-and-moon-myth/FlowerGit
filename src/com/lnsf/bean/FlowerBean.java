@@ -7,6 +7,88 @@ public class FlowerBean {
 	private Integer stock;
 	private Float flowerPrice;
 	private Integer flag;
+	
+	public Object[] getAll(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(flowerId != null){
+			o[c++] = flowerId;
+		}
+		if(flowerName != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerName;
+		}
+		if(stock != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = stock;
+		}
+		if(flowerPrice != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerPrice;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		return o;
+	}
+	
+	public Object[] getAllbeforeId(){
+		int c = 0;
+		Object[] o = new Object[1];
+		if(flowerName != null){
+			o[c++] = flowerName;
+		}
+		if(stock != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = stock;
+		}
+		if(flowerPrice != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerPrice;
+		}
+		if(flag != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flag;
+		}
+		if(flowerId != null){
+			if(c == o.length){
+				Object[] temp = new Object[c+1];
+				System.arraycopy(o, 0, temp, 0, o.length);
+				o = temp;
+			}
+			o[c++] = flowerId;
+		}
+		return o;
+	}
 
 	public Integer getFlowerId() {
 		return flowerId;
