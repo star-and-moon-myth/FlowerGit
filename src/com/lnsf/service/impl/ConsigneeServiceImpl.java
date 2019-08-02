@@ -2,8 +2,11 @@ package com.lnsf.service.impl;
 
 import com.lnsf.service.ConsigneeService;
 import com.lnsf.bean.ConsigneeBean;
+import com.lnsf.bean.UserBean;
 import com.lnsf.dao.ConsigneeDao;
+import com.lnsf.dao.UserDao;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
+import com.lnsf.dao.impl.UserDaoImpl;
 
 import java.util.List;
 
@@ -26,12 +29,26 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 
 	// 添加一条完整记录
 	public int insertRecord(ConsigneeBean record) {
-		return ConsigneeDao.insertRecord(record);
+		int lbs = 0;
+		UserBean ub = new UserBean();
+		ub.setUserId(record.getUserId());
+		UserDao ud = new UserDaoImpl();
+		if(ud.countSelective(ub) > 0){
+			lbs = ConsigneeDao.insertRecord(record);
+		}
+		return lbs;
 	}
 
 	// 添加指定列的数据
 	public int insertSelective(ConsigneeBean record) {
-		return ConsigneeDao.insertSelective(record);
+		int lbs = 0;
+		UserBean ub = new UserBean();
+		ub.setUserId(record.getUserId());
+		UserDao ud = new UserDaoImpl();
+		if(ud.countSelective(ub) > 0){
+			lbs = ConsigneeDao.insertSelective(record);
+		}
+		return lbs;
 	}
 
 	// 通过Id(主键)删除一条记录
@@ -41,12 +58,30 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 
 	// 按Id(主键)修改指定列的值
 	public int updateByIdSelective(ConsigneeBean record) {
-		return ConsigneeDao.updateByIdSelective(record);
+		int lbs = 0;
+		if(record.getUserId() == null){
+			lbs = ConsigneeDao.updateByIdSelective(record);
+		}else{
+			UserBean ub = new UserBean();
+			ub.setUserId(record.getUserId());
+			UserDao ud = new UserDaoImpl();
+			if(ud.countSelective(ub) > 0){
+				lbs = ConsigneeDao.updateByIdSelective(record);
+			}
+		}
+		return lbs;
 	}
 
 	// 按Id(主键)修改指定列的值
 	public int updateById(ConsigneeBean record) {
-		return ConsigneeDao.updateById(record);
+		int lbs = 0;
+		UserBean ub = new UserBean();
+		ub.setUserId(record.getUserId());
+		UserDao ud = new UserDaoImpl();
+		if(ud.countSelective(ub) > 0){
+			lbs = ConsigneeDao.updateByIdSelective(record);
+		}
+		return lbs;
 	}
 
 	// 计算表中的总记录数
