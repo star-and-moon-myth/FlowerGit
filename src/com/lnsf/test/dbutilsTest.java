@@ -10,7 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.lnsf.bean.ConsigneeBean;
 import com.lnsf.dao.ConsigneeDao;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
-import com.lnsf.utils.C3P0Utils;
+import com.lnsf.utils.C3p0Utils;
 
 public class dbutilsTest {
 	private int a = -1;

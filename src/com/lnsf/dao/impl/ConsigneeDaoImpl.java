@@ -3,17 +3,16 @@ package com.lnsf.dao.impl;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.lnsf.bean.ConsigneeBean;
 import com.lnsf.dao.ConsigneeDao;
-import com.lnsf.utils.C3P0Utils;
+import com.lnsf.utils.TxQueryRunner;
 
 public class ConsigneeDaoImpl implements ConsigneeDao {
-	private static QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+	private static TxQueryRunner qr = new TxQueryRunner();
 
 	// 添加一条完整记录
 	@Override
