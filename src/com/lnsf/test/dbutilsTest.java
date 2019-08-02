@@ -47,7 +47,7 @@ public class dbutilsTest {
 		// System.out.println(du.getA());
 		
 		int flag;
-		ConsigneeService cs = new ConsigneeServiceImpl();
+		ConsigneeService cs = new ConsigneeServiceImpl(new ConsigneeDaoImpl());
 		ConsigneeDao cd = new ConsigneeDaoImpl();
 		ConsigneeBean cb1 = new ConsigneeBean(cd.maxId()+1,"A","123","B","2017764511",1);
 		ConsigneeBean cb2 = new ConsigneeBean(cd.maxId(),"C",null,"D",null,1);

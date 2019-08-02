@@ -9,7 +9,12 @@ import java.util.List;
 
 public class UserdetailServiceImpl implements UserdetailService {
 
-	private UserdetailDao UserdetailDao = new UserdetailDaoImpl();
+	private UserdetailDao UserdetailDao;
+
+	public UserdetailServiceImpl(com.lnsf.dao.UserdetailDao userdetailDao) {
+		super();
+		UserdetailDao = userdetailDao;
+	}
 
 	public UserdetailDao getUserdetailDao() {
 		return UserdetailDao;

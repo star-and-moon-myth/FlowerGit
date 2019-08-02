@@ -9,7 +9,12 @@ import java.util.List;
 
 public class ConsigneeServiceImpl implements ConsigneeService {
 
-	private ConsigneeDao ConsigneeDao = new ConsigneeDaoImpl();
+	private ConsigneeDao ConsigneeDao;
+
+	public ConsigneeServiceImpl(com.lnsf.dao.ConsigneeDao consigneeDao) {
+		super();
+		ConsigneeDao = consigneeDao;
+	}
 
 	public ConsigneeDao getConsigneeDao() {
 		return ConsigneeDao;

@@ -9,7 +9,13 @@ import java.util.List;
 
 public class ProductdetailServiceImpl implements ProductdetailService {
 
-	private ProductdetailDao ProductdetailDao = new ProductdetailDaoImpl();
+	private ProductdetailDao ProductdetailDao;
+
+	public ProductdetailServiceImpl(
+			com.lnsf.dao.ProductdetailDao productdetailDao) {
+		super();
+		ProductdetailDao = productdetailDao;
+	}
 
 	public ProductdetailDao getProductdetailDao() {
 		return ProductdetailDao;

@@ -9,7 +9,12 @@ import java.util.List;
 
 public class OrderdetailServiceImpl implements OrderdetailService {
 
-	private OrderdetailDao OrderdetailDao = new OrderdetailDaoImpl();
+	private OrderdetailDao OrderdetailDao;
+
+	public OrderdetailServiceImpl(com.lnsf.dao.OrderdetailDao orderdetailDao) {
+		super();
+		OrderdetailDao = orderdetailDao;
+	}
 
 	public OrderdetailDao getOrderdetailDao() {
 		return OrderdetailDao;

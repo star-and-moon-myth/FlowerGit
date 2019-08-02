@@ -9,7 +9,12 @@ import java.util.List;
 
 public class TypeServiceImpl implements TypeService {
 
-	private TypeDao TypeDao = new TypeDaoImpl();
+	private TypeDao TypeDao;
+
+	public TypeServiceImpl(com.lnsf.dao.TypeDao typeDao) {
+		super();
+		TypeDao = typeDao;
+	}
 
 	public TypeDao getTypeDao() {
 		return TypeDao;

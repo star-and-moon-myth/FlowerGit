@@ -9,7 +9,12 @@ import java.util.List;
 
 public class OrdersServiceImpl implements OrdersService {
 
-	private OrdersDao OrdersDao = new OrdersDaoImpl();
+	private OrdersDao OrdersDao;
+
+	public OrdersServiceImpl(com.lnsf.dao.OrdersDao ordersDao) {
+		super();
+		OrdersDao = ordersDao;
+	}
 
 	public OrdersDao getOrdersDao() {
 		return OrdersDao;

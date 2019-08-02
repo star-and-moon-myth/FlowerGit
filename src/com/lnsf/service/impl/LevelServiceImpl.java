@@ -9,7 +9,12 @@ import java.util.List;
 
 public class LevelServiceImpl implements LevelService {
 
-	private LevelDao LevelDao = new LevelDaoImpl();
+	private LevelDao LevelDao;
+
+	public LevelServiceImpl(com.lnsf.dao.LevelDao levelDao) {
+		super();
+		LevelDao = levelDao;
+	}
 
 	public LevelDao getLevelDao() {
 		return LevelDao;

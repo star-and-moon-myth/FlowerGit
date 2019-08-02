@@ -9,7 +9,12 @@ import java.util.List;
 
 public class FlowerServiceImpl implements FlowerService {
 
-	private FlowerDao FlowerDao = new FlowerDaoImpl();
+	private FlowerDao FlowerDao;
+
+	public FlowerServiceImpl(com.lnsf.dao.FlowerDao flowerDao) {
+		super();
+		FlowerDao = flowerDao;
+	}
 
 	public FlowerDao getFlowerDao() {
 		return FlowerDao;

@@ -9,7 +9,12 @@ import java.util.List;
 
 public class InputServiceImpl implements InputService {
 
-	private InputDao InputDao = new InputDaoImpl();
+	private InputDao InputDao;
+
+	public InputServiceImpl(com.lnsf.dao.InputDao inputDao) {
+		super();
+		InputDao = inputDao;
+	}
 
 	public InputDao getInputDao() {
 		return InputDao;

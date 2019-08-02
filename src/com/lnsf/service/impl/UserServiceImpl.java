@@ -9,7 +9,12 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-	private UserDao UserDao = new UserDaoImpl();
+	private UserDao UserDao;
+	
+	public UserServiceImpl(com.lnsf.dao.UserDao userDao) {
+		super();
+		UserDao = userDao;
+	}
 
 	public UserDao getUserDao() {
 		return UserDao;

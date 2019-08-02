@@ -9,7 +9,12 @@ import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 
-	private ProductDao ProductDao = new ProductDaoImpl();
+	private ProductDao ProductDao;
+
+	public ProductServiceImpl(com.lnsf.dao.ProductDao productDao) {
+		super();
+		ProductDao = productDao;
+	}
 
 	public ProductDao getProductDao() {
 		return ProductDao;
