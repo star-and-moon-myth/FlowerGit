@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.ProductService;
-
 import com.lnsf.bean.ProductBean;
-
 import com.lnsf.dao.ProductDao;
+import com.lnsf.dao.impl.ProductDaoImpl;
 
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 
-	private ProductDao ProductDao;
+	private ProductDao ProductDao = new ProductDaoImpl();
 
 	public ProductDao getProductDao() {
 		return ProductDao;

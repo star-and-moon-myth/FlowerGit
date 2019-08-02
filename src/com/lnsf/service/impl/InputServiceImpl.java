@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.InputService;
-
 import com.lnsf.bean.InputBean;
-
 import com.lnsf.dao.InputDao;
+import com.lnsf.dao.impl.InputDaoImpl;
 
 import java.util.List;
 
 public class InputServiceImpl implements InputService {
 
-	private InputDao InputDao;
+	private InputDao InputDao = new InputDaoImpl();
 
 	public InputDao getInputDao() {
 		return InputDao;

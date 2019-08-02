@@ -10,6 +10,8 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.lnsf.bean.ConsigneeBean;
 import com.lnsf.dao.ConsigneeDao;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
+import com.lnsf.service.ConsigneeService;
+import com.lnsf.service.impl.ConsigneeServiceImpl;
 import com.lnsf.utils.C3p0Utils;
 
 public class dbutilsTest {
@@ -45,6 +47,7 @@ public class dbutilsTest {
 		// System.out.println(du.getA());
 		
 		int flag;
+		ConsigneeService cs = new ConsigneeServiceImpl();
 		ConsigneeDao cd = new ConsigneeDaoImpl();
 		ConsigneeBean cb1 = new ConsigneeBean(cd.maxId()+1,"A","123","B","2017764511",1);
 		ConsigneeBean cb2 = new ConsigneeBean(cd.maxId(),"C",null,"D",null,1);
@@ -66,7 +69,7 @@ public class dbutilsTest {
 //		System.out.println(flag);
 		
 		//查询测试
-		System.out.println(cd.selectById(8));
+		System.out.println(cs.selectById(8));
 		
 //		String str = "2017764511";
 //		str = String.valueOf(Integer.valueOf(str)+1);

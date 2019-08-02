@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.FlowerService;
-
 import com.lnsf.bean.FlowerBean;
-
 import com.lnsf.dao.FlowerDao;
+import com.lnsf.dao.impl.FlowerDaoImpl;
 
 import java.util.List;
 
 public class FlowerServiceImpl implements FlowerService {
 
-	private FlowerDao FlowerDao;
+	private FlowerDao FlowerDao = new FlowerDaoImpl();
 
 	public FlowerDao getFlowerDao() {
 		return FlowerDao;

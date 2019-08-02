@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.LevelService;
-
 import com.lnsf.bean.LevelBean;
-
 import com.lnsf.dao.LevelDao;
+import com.lnsf.dao.impl.LevelDaoImpl;
 
 import java.util.List;
 
 public class LevelServiceImpl implements LevelService {
 
-	private LevelDao LevelDao;
+	private LevelDao LevelDao = new LevelDaoImpl();
 
 	public LevelDao getLevelDao() {
 		return LevelDao;

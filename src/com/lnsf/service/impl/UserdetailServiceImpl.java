@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.UserdetailService;
-
 import com.lnsf.bean.UserdetailBean;
-
 import com.lnsf.dao.UserdetailDao;
+import com.lnsf.dao.impl.UserdetailDaoImpl;
 
 import java.util.List;
 
 public class UserdetailServiceImpl implements UserdetailService {
 
-	private UserdetailDao UserdetailDao;
+	private UserdetailDao UserdetailDao = new UserdetailDaoImpl();
 
 	public UserdetailDao getUserdetailDao() {
 		return UserdetailDao;

@@ -11,7 +11,7 @@ import com.lnsf.bean.OrderdetailBean;
 import com.lnsf.dao.OrderdetailDao;
 import com.lnsf.utils.TxQueryRunner;
 
-public class OrderDetailDaoImpl implements OrderdetailDao {
+public class OrderdetailDaoImpl implements OrderdetailDao {
 	private static TxQueryRunner qr = new TxQueryRunner();
 
 	@Override

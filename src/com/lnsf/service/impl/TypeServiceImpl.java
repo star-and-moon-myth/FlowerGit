@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.TypeService;
-
 import com.lnsf.bean.TypeBean;
-
 import com.lnsf.dao.TypeDao;
+import com.lnsf.dao.impl.TypeDaoImpl;
 
 import java.util.List;
 
 public class TypeServiceImpl implements TypeService {
 
-	private TypeDao TypeDao;
+	private TypeDao TypeDao = new TypeDaoImpl();
 
 	public TypeDao getTypeDao() {
 		return TypeDao;

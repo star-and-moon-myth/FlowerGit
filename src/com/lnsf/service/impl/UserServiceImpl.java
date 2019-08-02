@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.UserService;
-
 import com.lnsf.bean.UserBean;
-
 import com.lnsf.dao.UserDao;
+import com.lnsf.dao.impl.UserDaoImpl;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-	private UserDao UserDao;
+	private UserDao UserDao = new UserDaoImpl();
 
 	public UserDao getUserDao() {
 		return UserDao;

@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.ConsigneeService;
-
 import com.lnsf.bean.ConsigneeBean;
-
 import com.lnsf.dao.ConsigneeDao;
+import com.lnsf.dao.impl.ConsigneeDaoImpl;
 
 import java.util.List;
 
 public class ConsigneeServiceImpl implements ConsigneeService {
 
-	private ConsigneeDao ConsigneeDao;
+	private ConsigneeDao ConsigneeDao = new ConsigneeDaoImpl();
 
 	public ConsigneeDao getConsigneeDao() {
 		return ConsigneeDao;

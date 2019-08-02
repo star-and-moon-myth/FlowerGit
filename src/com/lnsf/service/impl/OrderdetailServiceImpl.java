@@ -1,16 +1,15 @@
 package com.lnsf.service.impl;
 
 import com.lnsf.service.OrderdetailService;
-
 import com.lnsf.bean.OrderdetailBean;
-
 import com.lnsf.dao.OrderdetailDao;
+import com.lnsf.dao.impl.OrderdetailDaoImpl;
 
 import java.util.List;
 
 public class OrderdetailServiceImpl implements OrderdetailService {
 
-	private OrderdetailDao OrderdetailDao;
+	private OrderdetailDao OrderdetailDao = new OrderdetailDaoImpl();
 
 	public OrderdetailDao getOrderdetailDao() {
 		return OrderdetailDao;
