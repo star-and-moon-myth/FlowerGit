@@ -1,5 +1,11 @@
 package com.lnsf.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.lnsf.utils.consoletable.enums.Align;
+import com.lnsf.utils.consoletable.table.Cell;
+
 public class ProductBean {
 
 	private Integer productId;
@@ -248,4 +254,31 @@ public class ProductBean {
 		this.somId = somId;
 		this.flag = flag;
 	}
+
+	public static List<Cell> getHeader() {
+		List<Cell> header = new ArrayList<Cell>() {
+			{
+				add(new Cell("ID."));
+				add(new Cell("Name"));
+				add(new Cell("Price"));
+				add(new Cell("Remark"));
+			}
+		};
+		return header;
+	}
+	
+	public List<Cell> getBody() {
+		String strId = String.valueOf(productId);
+		String strPrice = String.valueOf(productPrice);
+		List<Cell> body = new ArrayList<Cell>() {
+			{
+				add(new Cell(Align.CENTER, strId));
+				add(new Cell(Align.CENTER, productName));
+				add(new Cell(Align.CENTER, strPrice));
+				add(new Cell(Align.CENTER, remark));
+			}
+		};
+		return body;
+	}
+	
 }

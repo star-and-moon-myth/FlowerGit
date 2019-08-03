@@ -24,6 +24,6 @@ public interface UserService {
 
 	public UserBean selectById(String userId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<UserBean> selectAll();// 查询所有记录
 
 }

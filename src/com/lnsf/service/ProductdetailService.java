@@ -24,6 +24,6 @@ public interface ProductdetailService {
 
 	public ProductdetailBean selectById(Integer productDetailId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<ProductdetailBean> selectAll();// 查询所有记录
 
 }

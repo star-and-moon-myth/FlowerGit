@@ -24,6 +24,6 @@ public interface FlowerService {
 
 	public FlowerBean selectById(Integer flowerId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<FlowerBean> selectAll();// 查询所有记录
 
 }

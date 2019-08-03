@@ -2,17 +2,23 @@ package com.lnsf.test;
 
 import java.awt.AWTException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.lnsf.bean.ConsigneeBean;
+import com.lnsf.controller.Cart;
+import com.lnsf.controller.UserInterface;
 import com.lnsf.dao.ConsigneeDao;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
 import com.lnsf.service.ConsigneeService;
 import com.lnsf.service.impl.ConsigneeServiceImpl;
 import com.lnsf.utils.C3p0Utils;
+import com.lnsf.utils.consoletable.ConsoleTable;
+import com.lnsf.utils.consoletable.enums.Align;
+import com.lnsf.utils.consoletable.table.Cell;
 
 public class dbutilsTest {
 	private int a = -1;
@@ -69,11 +75,31 @@ public class dbutilsTest {
 //		System.out.println(flag);
 		
 		//查询测试
-		System.out.println(cs.selectById(8));
+//		System.out.println(cs.selectById(8));
+//		List<ConsigneeBean> cl = new ArrayList<ConsigneeBean>();
+//		cl = cs.selectAll();
+//		List<Cell> header = new ArrayList<Cell>() {
+//			{
+//				add(new Cell("姓名name"));
+//				add(new Cell("电子邮箱email"));
+//				add(new Cell("电话号码tel"));
+//			}
+//		};
+//		for (ConsigneeBean cb : cl) {
+//			List<List<Cell>> body = new ArrayList<List<Cell>>();
+//			body.add(new ArrayList<Cell>() {
+//					{
+//						add(new Cell(cb.getConName()));
+//					}
+//				});
+//			new ConsoleTable.ConsoleTableBuilder().addRows(body).build().print();
+//		}
 		
 //		String str = "2017764511";
 //		str = String.valueOf(Integer.valueOf(str)+1);
 //		System.out.println(str);
+		
+		UserInterface.nologMenu();
 	}
 
 	public int getA() {

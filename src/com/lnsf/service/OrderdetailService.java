@@ -24,6 +24,6 @@ public interface OrderdetailService {
 
 	public OrderdetailBean selectById(Integer orderDetailId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<OrderdetailBean> selectAll();// 查询所有记录
 
 }

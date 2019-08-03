@@ -24,6 +24,6 @@ public interface LevelService {
 
 	public LevelBean selectById(Integer levelId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<LevelBean> selectAll();// 查询所有记录
 
 }

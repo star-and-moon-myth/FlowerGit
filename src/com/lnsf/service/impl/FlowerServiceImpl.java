@@ -73,7 +73,7 @@ public class FlowerServiceImpl implements FlowerService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<FlowerBean> selectAll() {
 		return FlowerDao.selectAll();
 	}
 

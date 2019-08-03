@@ -1,5 +1,11 @@
 package com.lnsf.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.lnsf.utils.consoletable.enums.Align;
+import com.lnsf.utils.consoletable.table.Cell;
+
 public class TypeBean {
 
 	private Integer typeId;
@@ -89,5 +95,26 @@ public class TypeBean {
 		this.typeId = typeId;
 		this.typeName = typeName;
 		this.flag = flag;
+	}
+	
+	public static List<Cell> getHeader() {
+		List<Cell> header = new ArrayList<Cell>() {
+			{
+				add(new Cell("ID."));
+				add(new Cell("Name"));
+			}
+		};
+		return header;
+	}
+	
+	public List<Cell> getBody() {
+		String strId = String.valueOf(typeId);
+		List<Cell> body = new ArrayList<Cell>() {
+			{
+				add(new Cell(Align.CENTER, strId));
+				add(new Cell(Align.CENTER, typeName));
+			}
+		};
+		return body;
 	}
 }

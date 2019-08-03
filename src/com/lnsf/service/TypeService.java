@@ -24,6 +24,6 @@ public interface TypeService {
 
 	public TypeBean selectById(Integer typeId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<TypeBean> selectAll();// 查询所有记录
 
 }

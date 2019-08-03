@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<UserBean> selectAll() {
 		return UserDao.selectAll();
 	}
 

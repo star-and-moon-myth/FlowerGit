@@ -24,6 +24,6 @@ public interface InputService {
 
 	public InputBean selectById(Integer inputId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<InputBean> selectAll();// 查询所有记录
 
 }

@@ -105,7 +105,7 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<ConsigneeBean> selectAll() {
 		return ConsigneeDao.selectAll();
 	}
 

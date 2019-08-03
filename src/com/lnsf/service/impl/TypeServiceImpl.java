@@ -70,7 +70,7 @@ public class TypeServiceImpl implements TypeService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<TypeBean> selectAll() {
 		return TypeDao.selectAll();
 	}
 

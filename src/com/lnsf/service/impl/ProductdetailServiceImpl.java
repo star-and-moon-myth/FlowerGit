@@ -72,7 +72,7 @@ public class ProductdetailServiceImpl implements ProductdetailService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<ProductdetailBean> selectAll() {
 		return ProductdetailDao.selectAll();
 	}
 

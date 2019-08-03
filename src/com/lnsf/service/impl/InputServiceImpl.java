@@ -70,7 +70,7 @@ public class InputServiceImpl implements InputService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<InputBean> selectAll() {
 		return InputDao.selectAll();
 	}
 

@@ -70,7 +70,7 @@ public class LevelServiceImpl implements LevelService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<LevelBean> selectAll() {
 		return LevelDao.selectAll();
 	}
 

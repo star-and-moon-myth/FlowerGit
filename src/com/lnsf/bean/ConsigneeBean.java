@@ -1,5 +1,11 @@
 package com.lnsf.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.lnsf.utils.consoletable.enums.Align;
+import com.lnsf.utils.consoletable.table.Cell;
+
 public class ConsigneeBean {
 
 	private Integer conId;
@@ -230,6 +236,31 @@ public class ConsigneeBean {
 		return "ConsigneeBean [conId=" + conId + ", conName=" + conName
 				+ ", conTel=" + conTel + ", conAddr=" + conAddr + ", userId="
 				+ userId + ", flag=" + flag + "]";
+	}
+	
+	public static List<Cell> getHeader() {
+		List<Cell> header = new ArrayList<Cell>() {
+			{
+				add(new Cell("ID."));
+				add(new Cell("Name"));
+				add(new Cell("Tel"));
+				add(new Cell("Address"));
+			}
+		};
+		return header;
+	}
+	
+	public List<Cell> getBody() {
+		String strId = String.valueOf(conId);
+		List<Cell> body = new ArrayList<Cell>() {
+			{
+				add(new Cell(Align.CENTER, strId));
+				add(new Cell(Align.CENTER, conName));
+				add(new Cell(Align.CENTER, conTel));
+				add(new Cell(Align.CENTER, conAddr));
+			}
+		};
+		return body;
 	}
 	
 	

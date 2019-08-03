@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<ProductBean> selectAll() {
 		return ProductDao.selectAll();
 	}
 

@@ -24,6 +24,6 @@ public interface UserdetailService {
 
 	public UserdetailBean selectById(Integer userDetailId);// 通过Id(主键)查询一条记录
 
-	public List selectAll();// 查询所有记录
+	public List<UserdetailBean> selectAll();// 查询所有记录
 
 }

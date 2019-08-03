@@ -70,7 +70,7 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	// 查询所有记录
-	public List selectAll() {
+	public List<OrdersBean> selectAll() {
 		return OrdersDao.selectAll();
 	}
 
