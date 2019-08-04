@@ -1,5 +1,8 @@
 package com.lnsf.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,10 +12,49 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.lnsf.bean.OrdersBean;
 import com.lnsf.dao.OrdersDao;
+import com.lnsf.utils.C3p0Utils;
 import com.lnsf.utils.TxQueryRunner;
 
 public class OrdersDaoImpl implements OrdersDao {
 	private static TxQueryRunner qr = new TxQueryRunner();
+	
+	public boolean insert(OrdersBean o) {
+		String sql = "insert into orders(orderId,orderDate,conId,orderPrice,state,flag) values(?,?,?,?,?,?)";
+		String order_id = o.getOrderId();
+		String order_date = o.getOrderDate();
+		int con_id = o.getConId();
+		float order_price = o.getOrderPrice();
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = C3p0Utils.getConnection();
+			prepstat = conn.prepareStatement(sql);
+			prepstat.setString(1, order_id);
+			prepstat.setString(2, order_date);
+			prepstat.setInt(3, con_id);
+			prepstat.setFloat(4, order_price);
+			prepstat.setInt(5, 0);
+			prepstat.setInt(6, 1);
+			prepstat.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)
+					rs.close();
+				if(prepstat!=null)
+					prepstat.close();
+				if(conn!=null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return flag;
+	}
 
 	@Override
 	public int insertRecord(OrdersBean record) {
@@ -30,8 +72,8 @@ public class OrdersDaoImpl implements OrdersDao {
 	public int insertSelective(OrdersBean record) {
 		int row = 0;
 		try{
-			String sql = "insert into orders values(?,?,?,?,?,?,?,?)";
-			row = qr.update(sql, record.getAll());
+			String sql = "insert into orders(orderId,orderDate,conId,orderPrice,state,flag) values(?,?,?,?,?,?)";
+			row = qr.update(sql, record.getOrderId(),record.getOrderDate(),record.getConId(),record.getOrderPrice(),record.getState(),record.getFlag());
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -108,6 +150,18 @@ public class OrdersDaoImpl implements OrdersDao {
 		}
 		return count;
 	}
+	
+	public long countRecord2() {
+		long count = 0;
+		try {
+			String sql = "select count(*) from orders";
+			//调用方法query,传递结果集处理类ScalarHandler
+			count = (long)qr.query(sql,new ScalarHandler());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 	@Override
 	public int countSelective(OrdersBean record) {
@@ -152,7 +206,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		try {
 			String sql = "select max(orderId) from orders";
 			//调用方法query,传递结果集处理类ScalarHandler
-			max = qr.query(sql,new ScalarHandler<Integer>());
+			max = Integer.valueOf(qr.query(sql,new ScalarHandler<String>()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -2,9 +2,7 @@ package com.lnsf.bean;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Date;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
@@ -16,9 +14,9 @@ import com.lnsf.utils.consoletable.table.Cell;
 public class OrdersBean {
 
 	private String orderId;
-	private Date orderDate;
-	private Date deliverDate;
-	private Date finishDate;
+	private String orderDate;
+	private String deliverDate;
+	private String finishDate;
 	private Integer conId;
 	private Float orderPrice;
 	private Integer state;
@@ -154,76 +152,82 @@ public class OrdersBean {
 		return o;
 	}
 
+	
+	
 	public String getOrderId() {
 		return orderId;
-	}
-
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public Date getDeliverDate() {
-		return deliverDate;
-	}
-
-	public Date getFinishDate() {
-		return finishDate;
-	}
-
-	public Integer getConId() {
-		return conId;
-	}
-
-	public Float getOrderPrice() {
-		return orderPrice;
-	}
-
-	public Integer getState() {
-		return state;
-	}
-
-	public Integer getFlag() {
-		return flag;
 	}
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 
-	public void setDeliverDate(Date deliverDate) {
+	public String getDeliverDate() {
+		return deliverDate;
+	}
+
+	public void setDeliverDate(String deliverDate) {
 		this.deliverDate = deliverDate;
 	}
 
-	public void setFinishDate(Date finishDate) {
+	public String getFinishDate() {
+		return finishDate;
+	}
+
+	public void setFinishDate(String finishDate) {
 		this.finishDate = finishDate;
+	}
+
+	public Integer getConId() {
+		return conId;
 	}
 
 	public void setConId(Integer conId) {
 		this.conId = conId;
 	}
 
+	public Float getOrderPrice() {
+		return orderPrice;
+	}
+
 	public void setOrderPrice(Float orderPrice) {
 		this.orderPrice = orderPrice;
+	}
+
+	public Integer getState() {
+		return state;
 	}
 
 	public void setState(Integer state) {
 		this.state = state;
 	}
 
+	public Integer getFlag() {
+		return flag;
+	}
+
 	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
+	
+	
 
 	public OrdersBean() {
 		super();
 	}
+	
+	
 
-	public OrdersBean(String orderId, Date orderDate, Date deliverDate,
-			Date finishDate, Integer conId, Float orderPrice, Integer state,
+	public OrdersBean(String orderId, String orderDate, String deliverDate,
+			String finishDate, Integer conId, Float orderPrice, Integer state,
 			Integer flag) {
 		super();
 		this.orderId = orderId;
@@ -235,7 +239,7 @@ public class OrdersBean {
 		this.state = state;
 		this.flag = flag;
 	}
-	
+
 	public static List<Cell> getHeader() {
 		List<Cell> header = new ArrayList<Cell>() {
 			{
@@ -273,24 +277,9 @@ public class OrdersBean {
 		}
 		String strstate = "" + strState;
 		String strorderDate = "",strdeliverDate = "",strfinishDate = "";
-		if (orderDate != null) {
-			strorderDate = sdf.format(orderDate);
-		} else {
-
-		}
-		if (deliverDate != null) {
-			strdeliverDate = sdf.format(deliverDate);
-		} else {
-
-		}
-		if (finishDate != null) {
-			strfinishDate = sdf.format(finishDate);
-		} else {
-
-		}
-		String s1 = strorderDate;
-		String s2 = strdeliverDate;
-		String s3 = strfinishDate;
+		String s1 = orderDate;
+		String s2 = deliverDate;
+		String s3 = finishDate;
 		List<Cell> body = new ArrayList<Cell>() {
 			{
 				add(new Cell(Align.CENTER, orderId));

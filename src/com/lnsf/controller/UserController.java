@@ -232,11 +232,17 @@ public class UserController {
 				it.add(cb.getConId());
 			}
 		}
+//		System.out.println(it);
 		OrdersService os = new OrdersServiceImpl(new OrdersDaoImpl());
 		List<OrdersBean> ol = new ArrayList<OrdersBean>();
 		for (OrdersBean ob : os.selectAll()) {
-			if(it.indexOf(ob.getConId()) > 0){
-				ol.add(ob);
+//			if(it.indexOf(ob.getConId()) > 0){
+//				ol.add(ob);
+//			}
+			for (Integer integer : it) {
+				if(ob.getConId() == integer){
+					ol.add(ob);
+				}
 			}
 		}
 		OrderdetailService ods = new OrderdetailServiceImpl(new OrderdetailDaoImpl());
@@ -580,8 +586,10 @@ public class UserController {
 				List<Integer> it = new ArrayList<Integer>();
 				List<List<Cell>> showcon = new ArrayList<List<Cell>>();
 				for (ConsigneeBean cb : cd.selectAll()) {
-					showcon.add(cb.getBody());
-					it.add(cb.getConId());
+					if(cb.getUserId().equals(User.getUserId())){
+						showcon.add(cb.getBody());
+						it.add(cb.getConId());
+					}	
 				}
 				new ConsoleTable.ConsoleTableBuilder().addHeaders(ConsigneeBean.getHeader()).addRows(showcon).build().print();
 				System.out.println("请选择地址编号>");
@@ -594,6 +602,7 @@ public class UserController {
 							//结算
 							if(Cart.settlement(conId)){
 								System.out.println("结算成功");
+								Cart.clear();
 							}else{
 								System.out.println("结算失败");
 							}				

@@ -1,8 +1,9 @@
 package com.lnsf.controller;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import com.lnsf.bean.FlowerBean;
@@ -135,11 +136,13 @@ public class Cart {
 					}
 				}
 			}
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String s = sdf.format(new java.util.Date());
 			//插入订单表
-			OrdersService os = new OrdersServiceImpl(new OrdersDaoImpl());
-			String orderId = String.valueOf(os.maxId()+1);
-			OrdersBean ob = new OrdersBean(orderId,new Date(),null,null,conId,bill(),0,1);
-			os.insertRecord(ob);
+			OrdersDaoImpl os = new OrdersDaoImpl();
+			String orderId = String.valueOf(os.countRecord2()+1);
+			OrdersBean ob = new OrdersBean(orderId,s,null,null,conId,bill(),0,1);
+			os.insertSelective(ob);
 			//插入订单明细表
 			OrderdetailService ods = new OrderdetailServiceImpl(new OrderdetailDaoImpl());
 			for (CartProduct cartProduct : l) {

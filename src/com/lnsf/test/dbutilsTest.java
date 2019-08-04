@@ -14,6 +14,7 @@ import com.lnsf.controller.ManagerController;
 import com.lnsf.controller.UserController;
 import com.lnsf.dao.ConsigneeDao;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
+import com.lnsf.dao.impl.OrdersDaoImpl;
 import com.lnsf.service.ConsigneeService;
 import com.lnsf.service.impl.ConsigneeServiceImpl;
 import com.lnsf.utils.C3p0Utils;
@@ -101,10 +102,13 @@ public class dbutilsTest {
 //		System.out.println(str);
 		
 //		UserController.nologMenu();
-		ManagerController.managerMenu();
+//		ManagerController.managerMenu();
 		
 //		String strAddr = cs.selectById(8).getConAddr();
 //		System.out.println(strAddr);
+		
+		OrdersDaoImpl odi = new OrdersDaoImpl();
+		System.out.println(odi.countRecord2());
 	}
 
 	public int getA() {

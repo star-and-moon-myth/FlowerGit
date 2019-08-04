@@ -130,13 +130,17 @@ public class OrderdetailDaoImpl implements OrderdetailDao {
 
 	@Override
 	public int maxId() {
-		int max = 0;
+		Integer max = 0;
 		try {
 			String sql = "select max(orderDetailId) from orderdetail";
 			//调用方法query,传递结果集处理类ScalarHandler
 			max = qr.query(sql,new ScalarHandler<Integer>());
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if(max == null){
+				max = 0;
+			}
 		}
 		return max;
 	}
