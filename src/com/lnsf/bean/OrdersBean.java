@@ -1,8 +1,17 @@
 package com.lnsf.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Date;
 import java.util.Date;
+import java.util.List;
+
+import com.lnsf.dao.impl.ConsigneeDaoImpl;
+import com.lnsf.service.ConsigneeService;
+import com.lnsf.service.impl.ConsigneeServiceImpl;
+import com.lnsf.utils.consoletable.enums.Align;
+import com.lnsf.utils.consoletable.table.Cell;
 
 public class OrdersBean {
 
@@ -225,5 +234,74 @@ public class OrdersBean {
 		this.orderPrice = orderPrice;
 		this.state = state;
 		this.flag = flag;
+	}
+	
+	public static List<Cell> getHeader() {
+		List<Cell> header = new ArrayList<Cell>() {
+			{
+				add(new Cell("订单号"));
+				add(new Cell("下单日期"));
+				add(new Cell("发货日期"));
+				add(new Cell("收货日期"));
+				add(new Cell("收货地址"));
+				add(new Cell("订单金额"));
+				add(new Cell("订单状态"));
+			}
+		};
+		return header;
+	}
+	
+	public List<Cell> getBody() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String strPrice = String.valueOf(orderPrice);
+		ConsigneeService cs = new ConsigneeServiceImpl(new ConsigneeDaoImpl());
+//		String strAddr = cs.selectById(conId).getConAddr();
+		String strAddr = String.valueOf(conId);
+		String strState = "";
+		if(state != null){
+			if(state == 0){
+				strState = "用户已下单";
+			}else if(state == 1){
+				strState = "申请取消中";
+			}else if(state == 2){
+				strState = "订单已取消";
+			}else if(state == 3){
+				strState = "订单已发货";
+			}else if(state == 4){
+				strState = "已确认收货";
+			}
+		}
+		String strstate = "" + strState;
+		String strorderDate = "",strdeliverDate = "",strfinishDate = "";
+		if (orderDate != null) {
+			strorderDate = sdf.format(orderDate);
+		} else {
+
+		}
+		if (deliverDate != null) {
+			strdeliverDate = sdf.format(deliverDate);
+		} else {
+
+		}
+		if (finishDate != null) {
+			strfinishDate = sdf.format(finishDate);
+		} else {
+
+		}
+		String s1 = strorderDate;
+		String s2 = strdeliverDate;
+		String s3 = strfinishDate;
+		List<Cell> body = new ArrayList<Cell>() {
+			{
+				add(new Cell(Align.CENTER, orderId));
+				add(new Cell(Align.CENTER, s1));
+				add(new Cell(Align.CENTER, s2));
+				add(new Cell(Align.CENTER, s3));
+				add(new Cell(Align.CENTER, strPrice));
+				add(new Cell(Align.CENTER, strAddr));
+				add(new Cell(Align.CENTER, strstate));
+			}
+		};
+		return body;
 	}
 }

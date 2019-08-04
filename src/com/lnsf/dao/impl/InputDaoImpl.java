@@ -53,8 +53,8 @@ public class InputDaoImpl implements InputDao {
 	@Override
 	public int updateByIdSelective(InputBean record) {
 		String sql = "update input set ";
-		if(record.getFlowerId() != null){
-			sql += "flowerId = ?,";
+		if(record.getFlowerName() != null){
+			sql += "flowerName = ?,";
 		}
 		if(record.getInputNum() != null){
 			sql += "inputNum = ?,";
@@ -82,7 +82,7 @@ public class InputDaoImpl implements InputDao {
 	public int updateById(InputBean record) {
 		int row = 0;
 		try{
-			String sql = "update input set flowerId = ?,inputNum = ?,intputPrice = ?,inputDate = ?,flag = ? where inputId = ?";
+			String sql = "update input set flowerName = ?,inputNum = ?,intputPrice = ?,inputDate = ?,flag = ? where inputId = ?";
 			row = qr.update(sql, record.getAllbeforeId());
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -109,8 +109,8 @@ public class InputDaoImpl implements InputDao {
 		if(record.getInputId()!= null){
 			sql += "and inputId = '"+record.getInputId()+"'";
 		}
-		if(record.getFlowerId() != null){
-			sql += "and flowerId = '"+record.getFlowerId()+"'";
+		if(record.getFlowerName() != null){
+			sql += "and flowerName = '"+record.getFlowerName()+"'";
 		}
 		if(record.getInputNum() != null){
 			sql += "and inputNum = '"+record.getInputNum()+"'";

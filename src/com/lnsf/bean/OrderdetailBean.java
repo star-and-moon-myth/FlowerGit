@@ -1,5 +1,14 @@
 package com.lnsf.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.lnsf.dao.impl.ProductDaoImpl;
+import com.lnsf.service.ProductService;
+import com.lnsf.service.impl.ProductServiceImpl;
+import com.lnsf.utils.consoletable.enums.Align;
+import com.lnsf.utils.consoletable.table.Cell;
+
 public class OrderdetailBean {
 
 	private Integer orderDetailId;
@@ -143,4 +152,35 @@ public class OrderdetailBean {
 		this.productCount = productCount;
 		this.flag = flag;
 	}
+	
+	public static List<Cell> getHeader() {
+		List<Cell> header = new ArrayList<Cell>() {
+			{
+				add(new Cell("ID."));
+				add(new Cell("Number"));
+			}
+		};
+		return header;
+	}
+	
+	public List<Cell> getBody() {
+		ProductService ps = new ProductServiceImpl(new ProductDaoImpl());
+		String strproductId = String.valueOf(productId);
+		String strCount = String.valueOf(productCount);
+		List<Cell> body = new ArrayList<Cell>() {
+			{
+				add(new Cell(Align.CENTER, strproductId));
+				add(new Cell(Align.CENTER, strCount));
+			}
+		};
+		return body;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderdetailBean [orderDetailId=" + orderDetailId + ", orderId="
+				+ orderId + ", productId=" + productId + ", productCount="
+				+ productCount + ", flag=" + flag + "]";
+	}
+	
 }

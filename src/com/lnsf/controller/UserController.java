@@ -8,21 +8,29 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.lnsf.bean.ConsigneeBean;
+import com.lnsf.bean.OrderdetailBean;
+import com.lnsf.bean.OrdersBean;
 import com.lnsf.bean.ProductBean;
 import com.lnsf.bean.TypeBean;
 import com.lnsf.bean.UserBean;
 import com.lnsf.bean.UserdetailBean;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
+import com.lnsf.dao.impl.OrderdetailDaoImpl;
+import com.lnsf.dao.impl.OrdersDaoImpl;
 import com.lnsf.dao.impl.ProductDaoImpl;
 import com.lnsf.dao.impl.TypeDaoImpl;
 import com.lnsf.dao.impl.UserDaoImpl;
 import com.lnsf.dao.impl.UserdetailDaoImpl;
 import com.lnsf.service.ConsigneeService;
+import com.lnsf.service.OrderdetailService;
+import com.lnsf.service.OrdersService;
 import com.lnsf.service.ProductService;
 import com.lnsf.service.TypeService;
 import com.lnsf.service.UserService;
 import com.lnsf.service.UserdetailService;
 import com.lnsf.service.impl.ConsigneeServiceImpl;
+import com.lnsf.service.impl.OrderdetailServiceImpl;
+import com.lnsf.service.impl.OrdersServiceImpl;
 import com.lnsf.service.impl.ProductServiceImpl;
 import com.lnsf.service.impl.TypeServiceImpl;
 import com.lnsf.service.impl.UserServiceImpl;
@@ -33,38 +41,38 @@ import com.lnsf.utils.consoletable.ConsoleTable;
 import com.lnsf.utils.consoletable.enums.Align;
 import com.lnsf.utils.consoletable.table.Cell;
 
-public class UserInterface {
+public class UserController {
 
-	public static void cutline() {
+	private static void cutline() {
 		System.out.println("----------------------------------------");
 	}
-	public static void error() {
+	private static void error() {
 		System.out.println("+--------------------------------------+");
 		System.out.println("|                输入错误                          |");
 		System.out.println("+--------------------------------------+");
 	}
-	public static void outTrue() {
+	private static void outTrue() {
 		System.out.println("+--------------------------------------+");
 		System.out.println("|                注销成功                          |");
 		System.out.println("+--------------------------------------+");
 	}
-	public static void inTrue() {
+	private static void inTrue() {
 		System.out.println("+--------------------------------------+");
 		System.out.println("|                登录成功                          |");
 		System.out.println("+--------------------------------------+");
 	}
-	public static void inFalse() {
+	private static void inFalse() {
 		System.out.println("+--------------------------------------+");
 		System.out.println("|                登录失败                          |");
 		System.out.println("+--------------------------------------+");
 	}
-	public static void registerTrue() {
+	private static void registerTrue() {
 		System.out.println("+--------------------------------------+");
 		System.out.println("|                注册成功                          |");
 		System.out.println("+--------------------------------------+");
 	}
 
-	public static void logo() {
+	private static void logo() {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:MM");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("aa好");
@@ -86,7 +94,7 @@ public class UserInterface {
 		cutline();
 	}
 	
-	public static int surePopup() {
+	private static int surePopup() {
 		int sure = -1;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("+--------------------------------------+");
@@ -104,7 +112,7 @@ public class UserInterface {
 		}
 		return sure;
 	}
-	public static int sexPopup() {
+	private static int sexPopup() {
 		int sure = -1;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("+--------------------------------------+");
@@ -149,6 +157,7 @@ public class UserInterface {
 						logMenu();
 					}else if(User.getRole() == 0){
 						//管理员界面
+						ManagerController.managerMenu();
 					}
 				}else{
 					inFalse();
@@ -170,14 +179,15 @@ public class UserInterface {
 			}
 		}
 	}
-	public static void logMenu() {
+	private static void logMenu() {
 		Scanner sc = new Scanner(System.in);
 		int a = -1;
 		while (a != 0) {
 			System.out.println();
 			logo();
 			System.out.println("1.进店");
-			System.out.println("2.注销");
+			System.out.println("2.订单");
+			System.out.println("3.注销");
 			System.out.println("0.退出");
 			System.out.print("请选择>");
 			a = sc.nextInt();
@@ -187,6 +197,10 @@ public class UserInterface {
 				shopMenu();
 				break;
 			case 2:
+				//订单操作
+				orderMenu();
+				break;
+			case 3:
 				// 注销
 				User.logout();
 				outTrue();
@@ -205,9 +219,161 @@ public class UserInterface {
 			}
 		}
 	}
+	
+	//订单操作界面
+	private static void orderMenu() {
+		Scanner sc = new Scanner(System.in);
+		int a = -1;
+		
+		List<Integer> it = new ArrayList<Integer>();
+		ConsigneeService cs = new ConsigneeServiceImpl(new ConsigneeDaoImpl());
+		for (ConsigneeBean cb : cs.selectAll()) {
+			if(cb.getUserId().equals(User.getUserId())){
+				it.add(cb.getConId());
+			}
+		}
+		OrdersService os = new OrdersServiceImpl(new OrdersDaoImpl());
+		List<OrdersBean> ol = new ArrayList<OrdersBean>();
+		for (OrdersBean ob : os.selectAll()) {
+			if(it.indexOf(ob.getConId()) > 0){
+				ol.add(ob);
+			}
+		}
+		OrderdetailService ods = new OrderdetailServiceImpl(new OrderdetailDaoImpl());
+		List<OrderdetailBean> odl = new ArrayList<OrderdetailBean>();
+		odl = ods.selectAll();
+		
+		while(a != 0){
+			logo();
+			System.out.println("1.查看订单");
+			System.out.println("2.取消订单");
+			System.out.println("3.确认收货");
+			System.out.println("0.返回");
+			System.out.println("请选择>");
+			a = sc.nextInt();
+			switch (a) {
+			case 1:
+				List<List<Cell>> body = new ArrayList<List<Cell>>();
+				for (OrdersBean ob : ol) {
+					body.add(ob.getBody());
+				}
+				
+				System.out.println("所有订单:");
+				if (body.isEmpty()) {
+					System.out.println("订单列表为空");
+				} else {
+					new ConsoleTable.ConsoleTableBuilder().addHeaders(OrdersBean.getHeader()).addRows(body).build().print();
+					while (true) {
+						System.out.println("输入订单编号查询详细信息(输入0返回)：");
+						int b = sc.nextInt();
+						if (b == 0)
+							break;
+						System.out.println("该订单详情为:");
+						List<List<Cell>> showodb = new ArrayList<List<Cell>>();
+						OrderdetailBean odb = new OrderdetailBean();
+						for (OrderdetailBean odb1 : odl) {
+							if (odb1.getOrderId().equals(String.valueOf(b))) {
+								odb = odb1;
+							}
+						}
+						showodb.add(odb.getBody());
+						if (showodb.isEmpty()) {
+							System.out.println("无该订单详情");
+						} else {
+							new ConsoleTable.ConsoleTableBuilder()
+									.addHeaders(OrderdetailBean.getHeader())
+									.addRows(showodb).build().print();
+						}
+					}
+				}
+				break;
+			case 2:
+				List<List<Cell>> body1 = new ArrayList<List<Cell>>();
+				for (OrdersBean ob : ol) {
+					if(ob.getState() == 0 || ob.getState() == 3)
+						body1.add(ob.getBody());
+				}
+				
+				System.out.println("所有可取消订单:");
+				if (body1.isEmpty()) {
+					System.out.println("订单列表为空");
+				} else {
+					new ConsoleTable.ConsoleTableBuilder().addHeaders(OrdersBean.getHeader()).addRows(body1).build().print();
+					while (true) {
+						System.out.println("请输入所要取消的订单的编号(输入0返回)：");
+						int b = sc.nextInt();
+						if(b == 0) break;
+						OrdersBean ob = new OrdersBean();
+						for (OrdersBean ob1 : ol) {
+							if(ob1.getOrderId().equals(String.valueOf(b))){
+								ob = ob1;
+							}
+						}
+						System.out.println("您将取消以下订单:");
+						List<List<Cell>> showob1 = new ArrayList<List<Cell>>();
+						showob1.add(ob.getBody());
+						new ConsoleTable.ConsoleTableBuilder().addRows(showob1).build().print();
+						int sure = surePopup();
+						if(sure == 1){
+							ob.setState(1);
+							if(os.updateByIdSelective(ob) > 0){
+								System.out.println("已提交申请");
+							}else{
+								System.out.println("申请失败");
+							}
+						}
+					}
+				}
+				break;
+			case 3:
+				List<List<Cell>> body2 = new ArrayList<List<Cell>>();
+				for (OrdersBean ob : ol) {
+					if(ob.getState() == 3)
+						body2.add(ob.getBody());
+				}
+				
+				System.out.println("所有可确认收货订单:");
+				if (body2.isEmpty()) {
+					System.out.println("订单列表为空");
+				} else {
+					new ConsoleTable.ConsoleTableBuilder().addHeaders(OrdersBean.getHeader()).addRows(body2).build().print();
+					while (true) {
+						System.out.println("请输入所要确认收货的订单的编号(输入0返回)：");
+						int b = sc.nextInt();
+						if(b == 0) break;
+						OrdersBean ob = new OrdersBean();
+						for (OrdersBean ob1 : ol) {
+							if(ob1.getOrderId().equals(String.valueOf(b))){
+								ob = ob1;
+							}
+						}
+						System.out.println("您将确认收货以下订单:");
+						List<List<Cell>> showob1 = new ArrayList<List<Cell>>();
+						showob1.add(ob.getBody());
+						new ConsoleTable.ConsoleTableBuilder().addRows(showob1).build().print();
+						int sure = surePopup();
+						if(sure == 1){
+							ob.setState(4);
+							if(os.updateByIdSelective(ob) > 0){
+								System.out.println("已确认收货");
+							}else{
+								System.out.println("确认收货失败");
+							}
+						}
+					}
+				}
+				break;
+			case 0:
+				break;
+			default:
+				error();
+				break;
+			}
+		}
+	}
 
 	// 商品浏览界面
-	public static void shopMenu() {
+	private static void shopMenu() {
 		
 		Scanner sc = new Scanner(System.in);
 		int a = -1;
@@ -275,7 +441,7 @@ public class UserInterface {
 	}
 	
 	//分类界面
-	public static void typeShow(int minId,int maxId) {
+	private static void typeShow(int minId,int maxId) {
 
 		Scanner sc = new Scanner(System.in);
 		//查询所有商品与类型
@@ -359,7 +525,7 @@ public class UserInterface {
 	}
 	
 	//购物车菜单
-	public static void cartMenu() {
+	private static void cartMenu() {
 		Scanner sc = new Scanner(System.in);
 		int a = -1;
 		
@@ -449,7 +615,7 @@ public class UserInterface {
 	}
 
 	// 登录界面
-	public static void loginMenu() {
+	private static void loginMenu() {
 		System.out.println();
 		logo();
 		Scanner sc = new Scanner(System.in);
@@ -467,7 +633,7 @@ public class UserInterface {
 	}
 
 	// 注册界面
-	public static void registerMenu() {
+	private static void registerMenu() {
 		Scanner sc = new Scanner(System.in);
 		UserBean ub = new UserBean();
 		UserService us = new UserServiceImpl(new UserDaoImpl());

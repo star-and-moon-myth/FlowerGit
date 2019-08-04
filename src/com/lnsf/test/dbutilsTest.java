@@ -10,7 +10,8 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.lnsf.bean.ConsigneeBean;
 import com.lnsf.controller.Cart;
-import com.lnsf.controller.UserInterface;
+import com.lnsf.controller.ManagerController;
+import com.lnsf.controller.UserController;
 import com.lnsf.dao.ConsigneeDao;
 import com.lnsf.dao.impl.ConsigneeDaoImpl;
 import com.lnsf.service.ConsigneeService;
@@ -99,7 +100,11 @@ public class dbutilsTest {
 //		str = String.valueOf(Integer.valueOf(str)+1);
 //		System.out.println(str);
 		
-		UserInterface.nologMenu();
+//		UserController.nologMenu();
+		ManagerController.managerMenu();
+		
+//		String strAddr = cs.selectById(8).getConAddr();
+//		System.out.println(strAddr);
 	}
 
 	public int getA() {
