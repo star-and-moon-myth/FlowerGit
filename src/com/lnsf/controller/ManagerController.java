@@ -335,10 +335,12 @@ public class ManagerController {
 					List<List<Cell>> showob2 = new ArrayList<List<Cell>>();
 					showob2.add(ob.getBody());
 					new ConsoleTable.ConsoleTableBuilder().addRows(showob2).build().print();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					if(ob.getState() != null){
 						if(ob.getState() == 0){
 							int o = orderPopup();
 							ob.setState(o);
+							ob.setDeliverDate(sdf.format(new Date()));
 							if(os.updateByIdSelective(ob) > 0){
 								System.out.println("处理完毕");
 							}else{

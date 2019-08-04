@@ -357,9 +357,11 @@ public class UserController {
 						List<List<Cell>> showob1 = new ArrayList<List<Cell>>();
 						showob1.add(ob.getBody());
 						new ConsoleTable.ConsoleTableBuilder().addRows(showob1).build().print();
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 						int sure = surePopup();
 						if(sure == 1){
 							ob.setState(4);
+							ob.setFinishDate(sdf.format(new Date()));
 							if(os.updateByIdSelective(ob) > 0){
 								System.out.println("已确认收货");
 							}else{
